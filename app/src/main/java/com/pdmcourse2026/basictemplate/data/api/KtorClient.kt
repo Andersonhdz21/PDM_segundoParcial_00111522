@@ -3,6 +3,7 @@ package com.pdmcourse2026.basictemplate.data.api
 import android.util.Log
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
@@ -37,4 +38,16 @@ object KtorClient {
       header(HttpHeaders.Accept, "application/json")
     }
   }
+
+  val httpClient = HttpClient(CIO) {
+    install(ContentNegotiation) {
+      json(Json {
+        ignoreUnknownKeys = true
+      })
+    }
+    install(DefaultRequest) {
+      header("6be5cae0-fc53-4671-b015-1e2a90fef7e4", "6be5cae0-fc53-4671-b015-1e2a90fef7e4")
+    }
+  }
+
 }
